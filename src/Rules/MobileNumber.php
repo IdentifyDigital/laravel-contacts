@@ -1,21 +1,22 @@
 <?php
 
+
 namespace IdentifyDigital\Contacts\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class Postcode implements Rule
+class MobileNumber implements Rule
 {
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $value
+     * @param  string  $attribute
+     * @param  mixed  $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/', $value);
+        return preg_match('/^(\+\d{1,3}[- ]?)?\d{10}$/',$value);
     }
 
     /**
@@ -25,6 +26,6 @@ class Postcode implements Rule
      */
     public function message()
     {
-        return 'The :attribute must be a valid post code eg PE57 0HD.';
+        return 'The :attribute must be a valid mobile number.';
     }
 }
