@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Countries
  * @package IdentifyDigital\Contacts\Models
  */
-class Countries extends Model
+class Country extends Model
 {
     use SoftDeletes;
 
