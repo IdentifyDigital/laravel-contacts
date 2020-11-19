@@ -16,8 +16,8 @@ class Addresses extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('line_1', 100);
-            $table->string('line_2', 100);
-            $table->string('line_3', 100);
+            $table->string('line_2', 100)->nullable();
+            $table->string('line_3', 100)->nullable();
             $table->string('city', 50);
             $table->string('county', 100);
             $table->string('postcode', 32);

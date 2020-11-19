@@ -19,8 +19,11 @@ class ContactsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/Config/contacts.php' => config_path('contacts.php'),
         ]);
+        $this->publishes([
+            __DIR__ . '/Seeds/CountriesTableSeeder.php' => database_path('seeds/CountriesTableSeeder.php'),
+        ], 'countries-seeds');
+
         $this->loadMigrationsFrom(__DIR__.'/Migrations');
-//        $this->registerSeedsFrom(__DIR__.'/Seeds');
 
         Address::observe(AddressObserver::class);
     }
