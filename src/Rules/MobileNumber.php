@@ -16,7 +16,7 @@ class MobileNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^(\+\d{1,3}[- ]?)?\d{10}$/',$value);
+        return preg_match('/^[0-9]{10}+$/', $value);
     }
 
     /**
