@@ -1,8 +1,9 @@
 <?php
-namespace Database\Seeders;
+namespace IdentifyDigital\Contacts\Seeds;
 
 use Illuminate\Database\Seeder;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 class CountriesTableSeeder extends Seeder {
 
     public function run()
