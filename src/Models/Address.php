@@ -33,19 +33,13 @@ class Address extends Model
         'relation_id'
     ];
 
-//    /**
-//     * @return string
-//     */
-//    public function AddressToString(){
-//        $AddressString = "";
-//        $this->makeHidden('country_id');
-//        dd($this->visible);
-//
-//        foreach ($this->attributes as $field){
-//
-//            $AddressString .= ($field != null ? "{$field},\n\r":'');
-//        }
-//        return $AddressString;
-//    }
+    protected $appends = [
+        'address_string'
+    ];
+
+    public function getAddressStringAttribute()
+    {
+        return "{$this->line_1}, {$this->line_2}, {$this->city}, {$this->postcode}";
+    }
 
 }
