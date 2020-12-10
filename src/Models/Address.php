@@ -72,7 +72,20 @@ class Address extends Model
                 }
             }
         }
+
+        $string .= ', ' . $this->country->region;
+
         return $string;
+    }
+
+    /**
+     * Link address to a country
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function country()
+    {
+        return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
 }
