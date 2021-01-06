@@ -80,7 +80,7 @@ class Address extends Model
 
     /**
      * Link address to a country
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function country()
@@ -88,4 +88,20 @@ class Address extends Model
         return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
+    /**
+     * Returns the postcode area as a string
+     *
+     * @return string|string[]|null
+     */
+    public function getPostcodeAreaAttribute()
+    {
+        $postcode = strtoupper($this->attributes['postcode']);
+        // UK mainland / Channel Islands
+        if (preg_match('/^[A-Z]([A-Z]?\d(\d|[A-Z])?|\d[A-Z]?)\s*?\d[A-Z][A-Z]$/i', $postcode))
+            return preg_replace('/^([A-Z]([A-Z]?\d(\d|[A-Z])?|\d[A-Z]?))\s*?(\d[A-Z][A-Z])$/i', '$1', $postcode);
+        // British Forces
+        if (preg_match('/^(BFPO)\s*?(\d{1,4})$/i', $postcode))
+            return preg_replace('/^(BFPO)\s*?(\d{1,4})$/i', '$1', $postcode);
+        return $postcode;
+    }
 }
